@@ -260,7 +260,6 @@ namespace SS_OpenCV
         }
 
         public static void Scale_point_xy(Image<Bgr, byte> imgDestino,Image<Bgr, byte> imgOrigem, float scaleFactor, int centerX, int centerY)
-
         {
             unsafe
             {
@@ -282,8 +281,8 @@ namespace SS_OpenCV
                 {
                     for (xd = 0; xd < width; xd++)
                     {
-                        xo = (int)Math.Round((xd / scaleFactor) - ((width/2) / scaleFactor - centerX));
-                        yo = (int)Math.Round((yd / scaleFactor) - ((height/2) / scaleFactor - centerY));
+                        xo = (int)Math.Round((xd / scaleFactor) - ((width/2.0) / scaleFactor - centerX));
+                        yo = (int)Math.Round((yd / scaleFactor) - ((height/2.0) / scaleFactor - centerY));
                         if (xo < 0 || yo < 0 || xo >= width || yo >= height)
                         {
                             (dataPtrD + yd * widthstepD + xd * nChan)[0] = 0;
@@ -299,6 +298,70 @@ namespace SS_OpenCV
                     }
                 }
             }
+        }
+        public static void Mean(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+            unsafe
+            {
+                MIplImage mO = imgOrig.MIplImage;
+                MIplImage mD = imgDest.MIplImage;
+
+                byte* dataPtrO = (byte*)mO.ImageData.ToPointer(); // Pointer to the origin image
+                byte* dataPtrD = (byte*)mD.ImageData.ToPointer(); // Pointer to the origin image
+
+                int widthOrigin = imgOrig.Width;
+                int heightOrigin = imgOrig.Height;
+
+                int nChan = mO.NChannels; // number of channels - 3
+                int widthstepD = mD.WidthStep;
+                int widthstepO = mO.WidthStep;
+
+                int blue, green, red;
+                int xo, yo, i, j;
+                for (xo = 1; xo < widthOrigin - 1; xo++)
+                {
+                    for (yo = 1; yo < heightOrigin - 1; yo++)
+                    {
+                        blue = 0;
+                        green = 0;
+                        red = 0;
+
+                        for(i = -1; i <= 1; i++)
+                        {
+                            for(j = -1; j <= 1; j++)
+                            {
+                                 blue   += (dataPtrO + (yo + j) * widthstepO + (xo + i) * nChan)[0];
+                                 green  += (dataPtrO + (yo + j) * widthstepO + (xo + i) * nChan)[1];
+                                 red += (dataPtrO + (yo + j) * widthstepO + (xo + i) * nChan)[2];
+                            }
+                        }
+                        
+                        (dataPtrD + yo * widthstepD + xo * nChan)[0] = (byte) Math.Round(blue/9.0);
+                        (dataPtrD + yo * widthstepD + xo * nChan)[1] = (byte) Math.Round(green/9.0);
+                        (dataPtrD + yo * widthstepD + xo * nChan)[2] = (byte) Math.Round(red/9.0);
+                    }
+                }
+                //blue = 0;
+                //green = 0;
+                //red = 0;
+                //
+                //for (xo = 0; xo < widthOrigin; yo++)
+                //{
+                //    for (yo = 0; yo < heightOrigin; yo++)
+                //    {
+                //        if (xo == 0)
+                //        {
+                //            blue    += 4*(dataPtrO + yo * widthstepO + xo * nChan)[0] + 2*(dataPtrO + yo+1 * widthstepO + xo * nChan)[0] + 2*(dataPtrO + yo * widthstepO + xo + 1 * nChan)[0] + (dataPtrO + yo + 1* widthstepO + xo + 1 * nChan)[0];
+                //            green   += 4*(dataPtrO + yo * widthstepO + xo * nChan)[1] + 2*(dataPtrO + yo+1 * widthstepO + xo * nChan)[1] + 2*(dataPtrO + yo * widthstepO + xo + 1 * nChan)[1] + (dataPtrO + yo + 1* widthstepO + xo + 1 * nChan)[1];
+                //            red     += 4*(dataPtrO + yo * widthstepO + xo * nChan)[2] + 2*(dataPtrO + yo+1 * widthstepO + xo * nChan)[2] + 2*(dataPtrO + yo * widthstepO + xo + 1 * nChan)[2] + (dataPtrO + yo + 1* widthstepO + xo + 1 * nChan)[2];
+                //        }
+                //    }
+                //}
+            }
+        }
+        void Mean_solutionB(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+
         }
     }
 }
