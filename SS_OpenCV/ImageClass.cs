@@ -177,7 +177,7 @@ namespace SS_OpenCV
                 }
             }
         }
-        public static void Translation(Image<Bgr, byte> imgDestino,Image<Bgr, byte> imgOrigem, int dx, int dy)
+        public static void Translation(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, int dx, int dy)
         {
             unsafe
             {
@@ -218,7 +218,7 @@ namespace SS_OpenCV
             }
         }
 
-        public static void Scale(Image<Bgr, byte> imgDestino,Image<Bgr, byte> imgOrigem, float scaleFactor)
+        public static void Scale(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor)
         {
             unsafe
             {
@@ -259,7 +259,7 @@ namespace SS_OpenCV
             }
         }
 
-        public static void Scale_point_xy(Image<Bgr, byte> imgDestino,Image<Bgr, byte> imgOrigem, float scaleFactor, int centerX, int centerY)
+        public static void Scale_point_xy(Image<Bgr, byte> imgDestino, Image<Bgr, byte> imgOrigem, float scaleFactor, int centerX, int centerY)
         {
             unsafe
             {
@@ -281,8 +281,8 @@ namespace SS_OpenCV
                 {
                     for (xd = 0; xd < width; xd++)
                     {
-                        xo = (int)Math.Round((xd / scaleFactor) - ((width/2.0) / scaleFactor - centerX));
-                        yo = (int)Math.Round((yd / scaleFactor) - ((height/2.0) / scaleFactor - centerY));
+                        xo = (int)Math.Round((xd / scaleFactor) - ((width / 2.0) / scaleFactor - centerX));
+                        yo = (int)Math.Round((yd / scaleFactor) - ((height / 2.0) / scaleFactor - centerY));
                         if (xo < 0 || yo < 0 || xo >= width || yo >= height)
                         {
                             (dataPtrD + yd * widthstepD + xd * nChan)[0] = 0;
@@ -312,56 +312,114 @@ namespace SS_OpenCV
                 int widthOrigin = imgOrig.Width;
                 int heightOrigin = imgOrig.Height;
 
+                Image<Bgr, byte> imgAux = new Image<Bgr, byte>(widthOrigin + 2, heightOrigin + 2);
+                CvInvoke.CopyMakeBorder(imgOrig, imgAux, 1, 1, 1, 1, Emgu.CV.CvEnum.BorderType.Reflect);
+
+                MIplImage mA = imgAux.MIplImage;
+
+                byte* dataPtrA = (byte*)mA.ImageData.ToPointer();
+
+                int widthAux = imgAux.Width;
+                int heightAux = imgAux.Height;
+
                 int nChan = mO.NChannels; // number of channels - 3
                 int widthstepD = mD.WidthStep;
                 int widthstepO = mO.WidthStep;
+                int widthstepA = mA.WidthStep;
 
                 int blue, green, red;
                 int xo, yo, i, j;
-                for (xo = 1; xo < widthOrigin - 1; xo++)
+                for (xo = 1; xo < widthAux - 1; xo++)
                 {
-                    for (yo = 1; yo < heightOrigin - 1; yo++)
+                    for (yo = 1; yo < heightAux - 1; yo++)
                     {
                         blue = 0;
                         green = 0;
                         red = 0;
 
-                        for(i = -1; i <= 1; i++)
+                        for (i = -1; i <= 1; i++)
                         {
-                            for(j = -1; j <= 1; j++)
+                            for (j = -1; j <= 1; j++)
                             {
-                                 blue   += (dataPtrO + (yo + j) * widthstepO + (xo + i) * nChan)[0];
-                                 green  += (dataPtrO + (yo + j) * widthstepO + (xo + i) * nChan)[1];
-                                 red += (dataPtrO + (yo + j) * widthstepO + (xo + i) * nChan)[2];
+                                blue  += (dataPtrA + (yo + j) * widthstepA + (xo + i) * nChan)[0];
+                                green += (dataPtrA + (yo + j) * widthstepA + (xo + i) * nChan)[1];
+                                red   += (dataPtrA + (yo + j) * widthstepA + (xo + i) * nChan)[2];
                             }
                         }
-                        
-                        (dataPtrD + yo * widthstepD + xo * nChan)[0] = (byte) Math.Round(blue/9.0);
-                        (dataPtrD + yo * widthstepD + xo * nChan)[1] = (byte) Math.Round(green/9.0);
-                        (dataPtrD + yo * widthstepD + xo * nChan)[2] = (byte) Math.Round(red/9.0);
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[0] = (byte)Math.Round(blue / 9.0);
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[1] = (byte)Math.Round(green / 9.0);
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[2] = (byte)Math.Round(red / 9.0);
                     }
                 }
-                //blue = 0;
-                //green = 0;
-                //red = 0;
-                //
-                //for (xo = 0; xo < widthOrigin; yo++)
-                //{
-                //    for (yo = 0; yo < heightOrigin; yo++)
-                //    {
-                //        if (xo == 0)
-                //        {
-                //            blue    += 4*(dataPtrO + yo * widthstepO + xo * nChan)[0] + 2*(dataPtrO + yo+1 * widthstepO + xo * nChan)[0] + 2*(dataPtrO + yo * widthstepO + xo + 1 * nChan)[0] + (dataPtrO + yo + 1* widthstepO + xo + 1 * nChan)[0];
-                //            green   += 4*(dataPtrO + yo * widthstepO + xo * nChan)[1] + 2*(dataPtrO + yo+1 * widthstepO + xo * nChan)[1] + 2*(dataPtrO + yo * widthstepO + xo + 1 * nChan)[1] + (dataPtrO + yo + 1* widthstepO + xo + 1 * nChan)[1];
-                //            red     += 4*(dataPtrO + yo * widthstepO + xo * nChan)[2] + 2*(dataPtrO + yo+1 * widthstepO + xo * nChan)[2] + 2*(dataPtrO + yo * widthstepO + xo + 1 * nChan)[2] + (dataPtrO + yo + 1* widthstepO + xo + 1 * nChan)[2];
-                //        }
-                //    }
-                //}
             }
         }
         void Mean_solutionB(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
         {
 
+        }
+
+        public static void NonUniform(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, float[,] matrix, float matrixWeight, float offset)
+        {
+            unsafe
+            {
+                MIplImage mO = imgOrig.MIplImage;
+                MIplImage mD = imgDest.MIplImage;
+
+                byte* dataPtrO = (byte*)mO.ImageData.ToPointer(); // Pointer to the origin image
+                byte* dataPtrD = (byte*)mD.ImageData.ToPointer(); // Pointer to the origin image
+
+                int widthOrigin = imgOrig.Width;
+                int heightOrigin = imgOrig.Height;
+
+                Image<Bgr, byte> imgAux = new Image<Bgr, byte>(widthOrigin + 2, heightOrigin + 2);
+                CvInvoke.CopyMakeBorder(imgOrig, imgAux, 1, 1, 1, 1, Emgu.CV.CvEnum.BorderType.Reflect);
+
+                MIplImage mA = imgAux.MIplImage;
+
+                byte* dataPtrA = (byte*)mA.ImageData.ToPointer();
+
+                int widthAux = imgAux.Width;
+                int heightAux = imgAux.Height;
+
+                int nChan = mO.NChannels; // number of channels - 3
+                int widthstepD = mD.WidthStep;
+                int widthstepO = mO.WidthStep;
+                int widthstepA = mA.WidthStep;
+
+                float blue, green, red;
+                int xo, yo, i, j;
+                for (xo = 1; xo < widthAux-1; xo++)
+                {
+                    for (yo = 1; yo < heightAux-1; yo++)
+                    {
+                        blue = 0;
+                        green = 0;
+                        red = 0;
+
+                        for (i = 0; i <= 2; i++)
+                        {
+                            for (j = 0; j <= 2; j++)
+                            {
+                                blue  += matrix[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[0];
+                                green += matrix[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[1];
+                                red   += matrix[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[2];
+                            }
+                        }
+                        
+                        blue  = (float)Math.Round(blue / matrixWeight + offset);
+                        green = (float)Math.Round(green / matrixWeight + offset);
+                        red   = (float)Math.Round(red / matrixWeight + offset);
+
+                        blue  = (blue > 255 ? 255 : (blue < 0 ? 0 : blue));
+                        green = (green > 255 ? 255 : (green < 0 ? 0 : green));
+                        red   = (red > 255 ? 255   : (red < 0 ? 0 : red));
+
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[0] = (byte)blue;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[1] = (byte)green;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[2] = (byte)red;
+                    }
+                }
+            }
         }
     }
 }

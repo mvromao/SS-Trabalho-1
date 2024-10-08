@@ -188,6 +188,19 @@ namespace SS_OpenCV
 
         }
 
+        private void nonUniformToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FilterForm ff = new FilterForm();
+            
+            if (img == null) // verify if the image is already opened
+                return;
+            Cursor = Cursors.WaitCursor;
+
+            if (ff.ShowDialog() == DialogResult.OK)
+            {
+                ImageClass.NonUniform(img, imgUndo, ff.matrix, ff.weight, ff.offset);
+            }
+        }
     }
 
 
