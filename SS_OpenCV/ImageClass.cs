@@ -10,6 +10,7 @@ using Emgu.CV.ImgHash;
 using System.Linq;
 using Emgu.CV.XFeatures2D;
 using System.Diagnostics.Eventing.Reader;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SS_OpenCV
 {
@@ -46,7 +47,7 @@ namespace SS_OpenCV
 
                 MIplImage m = img.MIplImage;
                 byte* dataPtr = (byte*)m.ImageData.ToPointer(); // Pointer to the image
-                byte blue, green, red, gray;
+                byte blue, green, red;
 
                 int width = img.Width;
                 int height = img.Height;
@@ -413,6 +414,204 @@ namespace SS_OpenCV
                         blue  = (blue > 255 ? 255 : (blue < 0 ? 0 : blue));
                         green = (green > 255 ? 255 : (green < 0 ? 0 : green));
                         red   = (red > 255 ? 255   : (red < 0 ? 0 : red));
+
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[0] = (byte)blue;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[1] = (byte)green;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[2] = (byte)red;
+                    }
+                }
+            }
+        }
+        public static void Sobel(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        //public static void NonUniform(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig, float[,] matrix, float matrixWeight, float offset)
+        {
+            unsafe
+            {
+                MIplImage mO = imgOrig.MIplImage;
+                MIplImage mD = imgDest.MIplImage;
+
+                byte* dataPtrO = (byte*)mO.ImageData.ToPointer(); // Pointer to the origin image
+                byte* dataPtrD = (byte*)mD.ImageData.ToPointer(); // Pointer to the origin image
+
+                int widthOrigin = imgOrig.Width;
+                int heightOrigin = imgOrig.Height;
+
+                float[,] Sx = new float[,] {
+                    {1, 0, -1},
+                    {2, 0, -2},
+                    {1, 0, -1}
+                };
+                float[,] Sy = new float[,]
+                {
+                    {-1, -2, -1},
+                    { 0,  0,  0},
+                    { 1,  2,  1}
+                };
+
+                Image<Bgr, byte> imgAux = new Image<Bgr, byte>(widthOrigin + 2, heightOrigin + 2);
+                CvInvoke.CopyMakeBorder(imgOrig, imgAux, 1, 1, 1, 1, Emgu.CV.CvEnum.BorderType.Reflect);
+
+                MIplImage mA = imgAux.MIplImage;
+
+                byte* dataPtrA = (byte*)mA.ImageData.ToPointer();
+
+                int widthAux = imgAux.Width;
+                int heightAux = imgAux.Height;
+
+                int nChan = mO.NChannels; // number of channels - 3
+                int widthstepD = mD.WidthStep;
+                int widthstepO = mO.WidthStep;
+                int widthstepA = mA.WidthStep;
+
+                float blue, green, red, blueX, greenX, redX, blueY, greenY, redY;
+                int xo, yo, i, j;
+                for (xo = 1; xo < widthAux - 1; xo++)
+                {
+                    for (yo = 1; yo < heightAux - 1; yo++)
+                    {
+                        blueX = 0; blueY = 0;
+                        greenX = 0; greenY = 0;
+                        redX = 0; redY = 0;
+
+                        for (i = 0; i <= 2; i++)
+                        {
+                            for (j = 0; j <= 2; j++)
+                            {
+                                blueX += Sx[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[0];
+                                greenX += Sx[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[1];
+                                redX += Sx[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[2];
+                                blueY += Sy[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[0];
+                                greenY += Sy[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[1];
+                                redY += Sy[i, j] * (dataPtrA + (yo + j - 1) * widthstepA + (xo + i - 1) * nChan)[2];
+                            }
+                        }
+
+                        blue = Math.Abs(blueX) + Math.Abs(blueY);
+                        green = Math.Abs(greenX) + Math.Abs(greenY);
+                        red = Math.Abs(redX) + Math.Abs(redY);
+
+                        blue = (blue > 255 ? 255 : (blue < 0 ? 0 : blue));
+                        green = (green > 255 ? 255 : (green < 0 ? 0 : green));
+                        red = (red > 255 ? 255 : (red < 0 ? 0 : red));
+
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[0] = (byte)blue;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[1] = (byte)green;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[2] = (byte)red;
+                    }
+                }
+            }
+        }
+        public static void Diferentiation(Image<Bgr, byte> imgDest, Image<Bgr, byte>imgOrig)
+        {
+            unsafe
+            {
+                MIplImage mO = imgOrig.MIplImage;
+                MIplImage mD = imgDest.MIplImage;
+
+                byte* dataPtrO = (byte*)mO.ImageData.ToPointer(); // Pointer to the origin image
+                byte* dataPtrD = (byte*)mD.ImageData.ToPointer(); // Pointer to the origin image
+
+                int widthOrigin = imgOrig.Width;
+                int heightOrigin = imgOrig.Height;
+
+                Image<Bgr, byte> imgAux = new Image<Bgr, byte>(widthOrigin + 1, heightOrigin + 1);
+                CvInvoke.CopyMakeBorder(imgOrig, imgAux, 0, 1, 0, 1, Emgu.CV.CvEnum.BorderType.Reflect);
+
+                MIplImage mA = imgAux.MIplImage;
+
+                byte* dataPtrA = (byte*)mA.ImageData.ToPointer();
+
+                int widthAux = imgAux.Width;
+                int heightAux = imgAux.Height;
+
+                int nChan = mO.NChannels; // number of channels - 3
+                int widthstepD = mD.WidthStep;
+                int widthstepO = mO.WidthStep;
+                int widthstepA = mA.WidthStep;
+
+                float blue, green, red;
+                int xo, yo;
+                
+                for (xo = 1; xo < widthAux; xo++)
+                {
+                    for (yo = 1; yo < heightAux ; yo++)
+                    {
+                        blue = 0;
+                        green = 0;
+                        red = 0;
+
+                        blue  = Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[0] - (dataPtrA + (yo - 1) * widthstepA + (xo) * nChan)[0]) + 
+                                Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[0] - (dataPtrA + (yo) * widthstepA + (xo - 1) * nChan)[0]);
+
+                        green = Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[1] - (dataPtrA + (yo - 1) * widthstepA + (xo) * nChan)[1]) + 
+                                Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[1] - (dataPtrA + (yo) * widthstepA + (xo - 1) * nChan)[1]);
+
+                        red   = Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[2] - (dataPtrA + (yo - 1) * widthstepA + (xo) * nChan)[2]) + 
+                                Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[2] - (dataPtrA + (yo) * widthstepA + (xo - 1) * nChan)[2]);
+
+                        blue  = (blue > 255 ? 255 : blue);
+                        green = (green > 255 ? 255 :green);
+                        red   = (red > 255 ? 255 : red);
+
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[0] = (byte)blue;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[1] = (byte)green;
+                        (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[2] = (byte)red;
+                    }
+                }
+            }
+        }
+        public static void Roberts(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        //public static void Diferentiation(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+            unsafe
+            {
+                MIplImage mO = imgOrig.MIplImage;
+                MIplImage mD = imgDest.MIplImage;
+
+                byte* dataPtrO = (byte*)mO.ImageData.ToPointer(); // Pointer to the origin image
+                byte* dataPtrD = (byte*)mD.ImageData.ToPointer(); // Pointer to the origin image
+
+                int widthOrigin = imgOrig.Width;
+                int heightOrigin = imgOrig.Height;
+
+                Image<Bgr, byte> imgAux = new Image<Bgr, byte>(widthOrigin + 1, heightOrigin + 1);
+                CvInvoke.CopyMakeBorder(imgOrig, imgAux, 0, 1, 0, 1, Emgu.CV.CvEnum.BorderType.Reflect);
+
+                MIplImage mA = imgAux.MIplImage;
+
+                byte* dataPtrA = (byte*)mA.ImageData.ToPointer();
+
+                int widthAux = imgAux.Width;
+                int heightAux = imgAux.Height;
+
+                int nChan = mO.NChannels; // number of channels - 3
+                int widthstepD = mD.WidthStep;
+                int widthstepO = mO.WidthStep;
+                int widthstepA = mA.WidthStep;
+
+                float blue, green, red;
+                int xo, yo;
+
+                for (xo = 1; xo < widthAux; xo++)
+                {
+                    for (yo = 1; yo < heightAux; yo++)
+                    {
+                        blue = 0;
+                        green = 0;
+                        red = 0;
+
+                        blue = Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[0] - (dataPtrA + (yo) * widthstepA + (xo) * nChan)[0]) +
+                                Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo) * nChan)[0] - (dataPtrA + (yo) * widthstepA + (xo - 1) * nChan)[0]);
+
+                        green = Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[1] - (dataPtrA + (yo) * widthstepA + (xo) * nChan)[1]) +
+                                Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo) * nChan)[1] - (dataPtrA + (yo) * widthstepA + (xo - 1) * nChan)[1]);
+
+                        red = Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo - 1) * nChan)[2] - (dataPtrA + (yo) * widthstepA + (xo) * nChan)[2]) +
+                                Math.Abs((dataPtrA + (yo - 1) * widthstepA + (xo) * nChan)[2] - (dataPtrA + (yo) * widthstepA + (xo - 1) * nChan)[2]);
+
+                        blue = (blue > 255 ? 255 : blue);
+                        green = (green > 255 ? 255 : green);
+                        red = (red > 255 ? 255 : red);
 
                         (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[0] = (byte)blue;
                         (dataPtrD + (yo - 1) * widthstepD + (xo - 1) * nChan)[1] = (byte)green;
