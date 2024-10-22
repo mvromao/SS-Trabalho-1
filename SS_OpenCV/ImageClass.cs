@@ -620,5 +620,86 @@ namespace SS_OpenCV
                 }
             }
         }
+
+        public static void Median(Image<Bgr, byte> imgDest, Image<Bgr, byte> imgOrig)
+        {
+            unsafe
+            {
+                CvInvoke.MedianBlur(imgOrig, imgDest, 3);
+            }   
+        }
+
+        public static int[] Histogram_Gray(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+                MIplImage mI = img.MIplImage;
+
+
+                byte* dataPtr = (byte*)mI.ImageData.ToPointer(); // Pointer to the origin image
+                
+                int widthOrigin     = img.Width;
+                int heightOrigin    = img.Height;
+
+                int[] hist = new int[256];
+                
+                float blue, green, red;
+                int xo, yo, gray;
+
+                int nChan = mI.NChannels; // number of channels - 3
+                int widthstep = mI.WidthStep;
+
+                for (xo = 0; xo < widthOrigin; xo++ )
+                {
+                    for(yo = 0; yo < heightOrigin; yo++)
+                    {
+                        blue    = (dataPtr + yo * widthstep + xo * nChan)[0]; 
+                        green   = (dataPtr + yo * widthstep + xo * nChan)[1];
+                        red     = (dataPtr + yo * widthstep + xo * nChan)[2];
+
+                        // convert to gray
+                        gray = (int)Math.Round(((int)blue + green + red) / 3.0);
+                        hist[gray]++; 
+                    }
+                }
+                return hist;
+            }
+        }
+        public static int[,] Histogram_RGB(Emgu.CV.Image<Bgr, byte> img)
+        {
+            unsafe
+            {
+                MIplImage mI = img.MIplImage;
+
+                byte* dataPtr = (byte*)mI.ImageData.ToPointer(); // Pointer to the origin image
+
+                int widthOrigin = img.Width;
+                int heightOrigin = img.Height;
+
+                int[,] hist = new int[3,256];
+
+                float blue, green, red;
+                int xo, yo;
+
+                int nChan = mI.NChannels; // number of channels - 3
+                int widthstep = mI.WidthStep;
+
+                for (xo = 0; xo < widthOrigin; xo++)
+                {
+                    for (yo = 0; yo < heightOrigin; yo++)
+                    {
+                        blue = (dataPtr + yo * widthstep + xo * nChan)[0];
+                        green = (dataPtr + yo * widthstep + xo * nChan)[1];
+                        red = (dataPtr + yo * widthstep + xo * nChan)[2];
+
+                        hist[0,(int)blue]++;
+                        hist[1,(int)green]++;
+                        hist[2,(int)red]++;
+                    }
+                }
+                return hist;
+            }
+        }
+
     }
 }

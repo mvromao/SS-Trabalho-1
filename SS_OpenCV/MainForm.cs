@@ -201,9 +201,27 @@ namespace SS_OpenCV
                 ImageClass.NonUniform(img, imgUndo, ff.matrix, ff.weight, ff.offset);
             }
         }
+
+        private void histogramGrayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            if (img == null) return;
+            //Cursor = Cursors.WaitCursor;
+
+            int[] hist = ImageClass.Histogram_Gray(img);
+
+            Histogram Hist = new Histogram(hist);
+            Hist.ShowDialog();
+        }
+
+        private void histogramRGBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (img == null) return;
+
+            int[,] hist = ImageClass.Histogram_RGB(img);
+
+            Histogram Hist = new Histogram(hist);
+            Hist.ShowDialog();
+        }
     }
-
-
-
-
 }

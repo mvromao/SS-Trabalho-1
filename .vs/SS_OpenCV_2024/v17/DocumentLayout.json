@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\users\\reynold\\downloads\\ss_opencv_base_2024_09_16\\ss_opencv_base\\ss_opencv\\histogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\histogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\users\\reynold\\downloads\\ss_opencv_base_2024_09_16\\ss_opencv_base\\ss_opencv\\imageclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\imageclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\ss_opencv\\filterform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\filterform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\filterform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\users\\reynold\\downloads\\ss_opencv_base_2024_09_16\\ss_opencv_base\\ss_opencv\\histogram.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\histogram.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\users\\reynold\\downloads\\ss_opencv_base_2024_09_16\\ss_opencv_base\\ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|c:\\users\\reynold\\downloads\\ss_opencv_base_2024_09_16\\ss_opencv_base\\ss_opencv\\histogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CD855189-4EC3-4D94-8305-CE02B0E98ED1}|SS_OpenCV\\SS_OpenCV.csproj|solutionrelative:ss_opencv\\histogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,66 +42,79 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FilterForm.cs",
-              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs",
-              "RelativeDocumentMoniker": "SS_OpenCV\\FilterForm.cs",
-              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs",
-              "RelativeToolTip": "SS_OpenCV\\FilterForm.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAADwvxkAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "MainForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\MainForm.cs",
+              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs [Design]",
+              "RelativeToolTip": "SS_OpenCV\\MainForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T14:07:34.132Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FilterForm.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.Designer.cs",
-              "RelativeDocumentMoniker": "SS_OpenCV\\FilterForm.Designer.cs",
-              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.Designer.cs",
-              "RelativeToolTip": "SS_OpenCV\\FilterForm.Designer.cs",
-              "ViewState": "AgIAAMAAAAAAAAAAAAAiwNQAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T14:10:19.049Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "FilterForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs",
-              "RelativeDocumentMoniker": "SS_OpenCV\\FilterForm.cs",
-              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\FilterForm.cs [Design]",
-              "RelativeToolTip": "SS_OpenCV\\FilterForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T13:53:02.283Z",
+              "WhenOpened": "2024-10-22T14:56:23.374Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Histogram.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\Histogram.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\Histogram.cs",
+              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\Histogram.cs [Design]",
+              "RelativeToolTip": "SS_OpenCV\\Histogram.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T14:38:32.354Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Histogram.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\Histogram.Designer.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\Histogram.Designer.cs",
+              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\Histogram.Designer.cs",
+              "RelativeToolTip": "SS_OpenCV\\Histogram.Designer.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAhwEEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T14:02:02.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Histogram.cs",
+              "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\Histogram.cs",
+              "RelativeDocumentMoniker": "SS_OpenCV\\Histogram.cs",
+              "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\Histogram.cs",
+              "RelativeToolTip": "SS_OpenCV\\Histogram.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwBkAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-22T13:59:14.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ImageClass.cs",
               "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\ImageClass.cs",
               "RelativeDocumentMoniker": "SS_OpenCV\\ImageClass.cs",
               "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\ImageClass.cs",
               "RelativeToolTip": "SS_OpenCV\\ImageClass.cs",
-              "ViewState": "AgIAAEkCAAAAAAAAAAAkwFUCAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAHYCAAAAAAAAAAAAAIMCAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-24T13:18:32.749Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "MainForm.cs",
               "DocumentMoniker": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
               "RelativeDocumentMoniker": "SS_OpenCV\\MainForm.cs",
               "ToolTip": "C:\\Users\\reynold\\Downloads\\SS_OpenCV_Base_2024_09_16\\SS_OpenCV_Base\\SS_OpenCV\\MainForm.cs",
               "RelativeToolTip": "SS_OpenCV\\MainForm.cs",
-              "ViewState": "AgIAAKYAAAAAAAAAAAAcwLIAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAMgAAAAAAAAAAAASwNIAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-24T10:29:49.987Z"
+              "WhenOpened": "2024-09-24T10:29:49.987Z",
+              "EditorCaption": ""
             }
           ]
         }

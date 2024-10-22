@@ -44,6 +44,7 @@
             this.colorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.negativeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.grayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.histogramGrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transformsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.translationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +59,7 @@
             this.ImageViewer = new Emgu.CV.UI.ImageBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.histogramRGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImageViewer)).BeginInit();
@@ -151,7 +153,9 @@
             // 
             this.colorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.negativeToolStripMenuItem,
-            this.grayToolStripMenuItem});
+            this.grayToolStripMenuItem,
+            this.histogramGrayToolStripMenuItem,
+            this.histogramRGBToolStripMenuItem});
             this.colorToolStripMenuItem.Name = "colorToolStripMenuItem";
             this.colorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.colorToolStripMenuItem.Text = "Color";
@@ -159,16 +163,23 @@
             // negativeToolStripMenuItem
             // 
             this.negativeToolStripMenuItem.Name = "negativeToolStripMenuItem";
-            this.negativeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.negativeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.negativeToolStripMenuItem.Text = "Negative";
             this.negativeToolStripMenuItem.Click += new System.EventHandler(this.negativeToolStripMenuItem_Click);
             // 
             // grayToolStripMenuItem
             // 
             this.grayToolStripMenuItem.Name = "grayToolStripMenuItem";
-            this.grayToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.grayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.grayToolStripMenuItem.Text = "Gray";
             this.grayToolStripMenuItem.Click += new System.EventHandler(this.grayToolStripMenuItem_Click);
+            // 
+            // histogramGrayToolStripMenuItem
+            // 
+            this.histogramGrayToolStripMenuItem.Name = "histogramGrayToolStripMenuItem";
+            this.histogramGrayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.histogramGrayToolStripMenuItem.Text = "HistogramGray";
+            this.histogramGrayToolStripMenuItem.Click += new System.EventHandler(this.histogramGrayToolStripMenuItem_Click);
             // 
             // transformsToolStripMenuItem
             // 
@@ -210,13 +221,13 @@
             // mediaToolStripMenuItem
             // 
             this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
-            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.mediaToolStripMenuItem.Text = "Mean - solution A";
             // 
             // nonUniformToolStripMenuItem
             // 
             this.nonUniformToolStripMenuItem.Name = "nonUniformToolStripMenuItem";
-            this.nonUniformToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nonUniformToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.nonUniformToolStripMenuItem.Text = "NonUniform";
             this.nonUniformToolStripMenuItem.Click += new System.EventHandler(this.nonUniformToolStripMenuItem_Click);
             // 
@@ -258,7 +269,7 @@
             // ImageViewer
             // 
             this.ImageViewer.Location = new System.Drawing.Point(0, 1);
-            this.ImageViewer.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.ImageViewer.Margin = new System.Windows.Forms.Padding(1);
             this.ImageViewer.Name = "ImageViewer";
             this.ImageViewer.Size = new System.Drawing.Size(810, 559);
             this.ImageViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -283,6 +294,13 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(49, 17);
             this.statusLabel.Text = "X :-   Y:-";
+            // 
+            // histogramRGBToolStripMenuItem
+            // 
+            this.histogramRGBToolStripMenuItem.Name = "histogramRGBToolStripMenuItem";
+            this.histogramRGBToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.histogramRGBToolStripMenuItem.Text = "HistogramRGB";
+            this.histogramRGBToolStripMenuItem.Click += new System.EventHandler(this.histogramRGBToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -338,7 +356,8 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private Emgu.CV.UI.ImageBox ImageViewer;
         private System.Windows.Forms.ToolStripMenuItem nonUniformToolStripMenuItem;
-        
+        private System.Windows.Forms.ToolStripMenuItem histogramGrayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem histogramRGBToolStripMenuItem;
     }
 }
 
